@@ -110,7 +110,7 @@ private func count(_ px: (Int, Int) -> Pixel, _ rect: CGRect, _ test: (Pixel) ->
 
     @Test func fullLayoutStacksNameStatusAndCommandsRightOfA48ptTile() throws {
         let content = CGRect(x: 100, y: 10, width: 900, height: 64)
-        let l = W7MessengerHeaderLayoutFor(content, false, "Kagan Isildak", .available)
+        let l = W7MessengerHeaderLayoutFor(content, false, "Jordan Walker", .available)
         #expect(l.tile == CGRect(x: 108, y: 18, width: 48, height: 48))
         #expect(l.name.minX > l.tile.maxX && l.name.width > 40 && l.name.maxY <= content.maxY)
         #expect(l.orb.width == 12 && l.orb.height == 12 && l.orb.minX == l.name.minX)
@@ -126,7 +126,7 @@ private func count(_ px: (Int, Int) -> Pixel, _ rect: CGRect, _ test: (Pixel) ->
 
     @Test func compactLayoutPutsEverythingOnOneLineRightOfA24ptTile() {
         let content = CGRect(x: 0, y: 0, width: 900, height: 32)
-        let l = W7MessengerHeaderLayoutFor(content, true, "Kagan Isildak", .available)
+        let l = W7MessengerHeaderLayoutFor(content, true, "Jordan Walker", .available)
         #expect(l.tile == CGRect(x: 4, y: 4, width: 24, height: 24))
         #expect(abs(l.name.midY - 16) <= 1 && abs(l.orb.midY - 16) <= 1 && abs(l.status.midY - 16) <= 1)
         #expect(l.name.minX > l.tile.maxX && l.orb.minX > l.name.maxX && l.status.minX > l.orb.maxX)
@@ -155,8 +155,8 @@ private func count(_ px: (Int, Int) -> Pixel, _ rect: CGRect, _ test: (Pixel) ->
 
     @Test func fullHeaderDrawsTileNameOrbAndGreyCommands() {
         let content = CGRect(x: 0, y: 0, width: 640, height: 64)
-        let l = W7MessengerHeaderLayoutFor(content, false, "Kagan Isildak", .available)
-        let px = render(width: 640, height: 64) { W7DrawMessengerHeader($0, content, false, nil, "Kagan Isildak", .available) }
+        let l = W7MessengerHeaderLayoutFor(content, false, "Jordan Walker", .available)
+        let px = render(width: 640, height: 64) { W7DrawMessengerHeader($0, content, false, nil, "Jordan Walker", .available) }
         #expect(near(px(Int(l.tile.midX), Int(l.tile.minY) + 6), 0x7F9FC7, 8), "the silhouette tile")
         #expect(near(px(Int(l.orb.midX), Int(l.orb.midY) - 3), 0x5BCB3A, 12), "green orb")
         let darkBlue = count(px, l.name) { $0.a > 128 && $0.b > $0.r + 40 && $0.r < 0x60 }
