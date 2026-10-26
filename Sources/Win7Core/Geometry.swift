@@ -1,6 +1,6 @@
 import CoreGraphics
 
-public enum Win7 { public static let version = "0.1.0" }
+public enum Win7 { public static let version = "1.0.0" }
 
 /// AX coordinates are global with a top-left origin; AppKit's are bottom-left relative to the primary screen.
 public enum Coordinates {

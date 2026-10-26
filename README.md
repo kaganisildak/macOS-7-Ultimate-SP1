@@ -19,6 +19,22 @@ Panel, the Windows 7 sounds, cursors and icons — taken from your own Windows 7
 
 ## Install
 
+### From a release (no compiling)
+
+Download `macOS-7-Ultimate-SP1-v<version>-arm64.tar.gz` from [Releases](https://github.com/kaganisildak/macOS-7-Ultimate-SP1/releases), then:
+
+```sh
+tar xzf macOS-7-Ultimate-SP1-v*-arm64.tar.gz
+cd macOS-7-Ultimate-SP1-v*-arm64
+./install-release.sh                          # the shell, and the dylib when Ammonia is installed
+./install-release.sh SRC=/path/to/Win7.iso    # also imports the Windows 7 assets from your own media
+```
+
+The bundle holds the prebuilt `Win7Shell.app` (signed ad hoc) and `Win7Chrome.dylib`, and no Microsoft files: the
+wallpaper, sounds, cursors, fonts and icons are extracted on your Mac from the media you point `SRC` at.
+
+### From source
+
 ```sh
 make setup                                  # checks prerequisites, then builds, installs and starts the shell
 make import-assets SRC=/path/to/Win7.iso    # wallpaper, sounds, cursors, fonts, Start orb and every icon
