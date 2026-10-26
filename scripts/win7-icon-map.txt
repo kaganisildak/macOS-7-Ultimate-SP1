@@ -1,0 +1,155 @@
+# Icon map for scripts/import-icons.sh (make import-icons SRC=<zip or folder of .ico files>).
+# Format, one mapping per line ('#' after a space, or at the start of a line, begins a comment):
+#   <imageres.dll icon id> <name>.png    the id is the number in an exported name: imageres-#3.ico is id 3
+#   <dll>:<id>             <name>.png    another DLL's icon group: shell32:25 takes shell32-#25.ico (or
+#                                        shell32-25.ico); the dll is the file name without .dll/.exe/.cpl, any case
+#   <file>.ico             <name>.png    an icon file by name (any letter case), for packs of named icons
+# Exported names: <dll>-#N.ico, <dll>-N.ico, #N.ico or N.ico (no dll part means imageres).
+# <name>.png is written to Assets/icons/ (and the installed copy). Names are plain file names: letters, digits,
+# '.', '-' and '_'. app-<bundle id>.png replaces that application's icon in the taskbar, Start menu, switcher
+# and jump list.
+# Icons whose id is not listed, from any DLL, go to Assets/_contact/<pack>/<dll>-<id>.png only, and all of them
+# into one labelled sheet, Assets/_contact/<pack>.png, so you can look at them and add a line here; then re-run
+# the import. Other .ico files not listed by name are skipped. No code changes needed. Entries missing from a
+# pack are simply not imported. The ids are the same as in scripts/win7-asset-map.txt.
+
+# imageres.dll, part 1 of the pack (ids 2-41)
+2   file.png                # generic file
+3   folder.png              # folder
+14  games.png               # Games
+15  file-app.png            # application window
+19  file-text.png           # text document
+21  file-image.png          # picture document
+22  file-audio.png          # music document
+23  file-video.png          # video document
+25  network.png             # network / Internet globe
+26  devices.png             # Devices and Printers
+27  control-panel.png       # Control Panel
+32  drive.png               # hard drive
+35  drive-removable.png     # removable drive
+36  drive-system.png        # system drive (Windows logo)
+37  drive-optical.png       # DVD drive
+
+# imageres.dll, later parts of the pack (same ids as win7-asset-map.txt)
+54  recycle-bin-full.png    # Recycle Bin, full
+55  recycle-bin-empty.png   # Recycle Bin, empty
+108 folder-music.png        # My Music
+109 computer.png            # Computer
+112 folder-documents.png    # My Documents
+113 folder-pictures.png     # My Pictures
+
+# Named icons (the utilities pack)
+explorer.ico   app-com.apple.finder.png            # Windows Explorer -> Finder
+taskmgr.ico    app-com.apple.ActivityMonitor.png   # Task Manager -> Activity Monitor
+trashbin1.ico  recycle-bin-empty.png               # Recycle Bin, empty
+trashbin2.ico  recycle-bin-full.png                # Recycle Bin, full
+
+# Control Panel. The shell's Control Panel window looks for cp-<name>.png: the eight categories (48 pt)
+# cp-system-security, cp-user-accounts, cp-network-internet, cp-appearance, cp-hardware-sound, cp-clock-region,
+# cp-programs, cp-ease-of-access, and one per item (32 pt), cp-<item id> as listed in
+# Sources/Win7Core/ControlPanelCatalog.swift (cp-action-center, cp-sound, cp-fonts ...). Without one it uses an
+# older name (network.png, devices.png, computer.png, drive-system.png, folder.png, file-app.png ...), then a drawn icon.
+# Windows 7 takes most Control Panel icons from other DLLs (themecpl.dll, wucltux.dll, mmsys.cpl, timedate.cpl ...),
+# not imageres.dll: for a named-icon pack add "<file>.ico cp-<name>.png" lines. The imageres ones:
+24  cp-default-programs.png       # Default Programs (pack 1)
+114 cp-administrative-tools.png   # Administrative Tools (a later part; check _contact/ after importing it)
+
+# imageres.dll, places and Control Panel categories (chosen 2026-10-17 on the user's media)
+99   help.png                     # Help (also IE's Help button: ie-help.png in win7-asset-map.txt)
+116  cp-getting-started.png
+120  cp-network-internet.png
+123  folder-user.png
+144  cp-clock-region.png
+150  cp-performance.png
+183  folder-desktop.png
+184  folder-downloads.png
+189  folder-videos.png
+195  cp-system-security.png
+196  cp-hardware-sound.png
+197  cp-appearance.png
+56   cp-autoplay.png
+1008 cp-system.png
+1021 cp-programs.png
+1022 cp-recovery.png
+1023 app-com.apple.finder.png     # Libraries: Windows 7's taskbar Explorer button
+1024 favorites.png                # the gold star
+1010 shared.png                   # Finder's sidebar Shared
+
+# Device Manager and Devices and Printers: the same ids as win7-asset-map.txt. An id can map to one
+# name only, so the categories whose picture already has a name here use it (the shell falls back to it):
+# dev-disk -> drive.png (32), dev-printer -> devices.png (26; no fallback, a different picture in the asset map),
+# dev-network -> network.png (25), dev-computer -> computer.png (109), dev-mouse -> cp-mouse.png (main:100),
+# dev-audio -> cp-sound.png (mmsys:100), dev-battery -> cp-power-options.png (powercpl:1).
+34   dev-processor.png
+33   dev-storage.png
+57   dev-camera.png
+103  dev-monitor.png
+110  dev-display.png
+182  dev-keyboard.png
+
+# Other DLLs: export them as <dll>-#N.ico (shell32-#25.ico) and they map with these <dll>:<id> lines.
+user32:101          msgbox-warning.png
+user32:102          msgbox-question.png
+user32:103          msgbox-error.png
+user32:104          msgbox-info.png
+shell32:25          run.png
+shell32:40          cp-taskbar-start-menu.png
+shell32:43          cp-notification-area-icons.png
+shell32:210         cp-folder-options.png
+shell32:16741       recent-places.png
+ieframe:100         ie-home.png
+ieframe:116         ie-print.png
+ieframe:102         ie-page.png
+iexplore:32528      app-com.apple.Safari.png
+wmplayer:120        app-com.apple.Music.png
+notepad:2           app-com.apple.TextEdit.png
+taskmgr:107         app-com.apple.ActivityMonitor.png
+calc:234            app-com.apple.calculator.png
+photoviewer:3005    app-com.apple.Preview.png
+pnidui:3020         tray-disconnected.png
+pnidui:3021         tray-wifi-0.png
+pnidui:3023         tray-wifi-1.png
+pnidui:3024         tray-wifi-2.png
+pnidui:3025         tray-wifi-3.png
+pnidui:3026         tray-wifi-4.png
+pnidui:3035         tray-no-network.png
+pnidui:3044         tray-wired.png
+sndvolsso:120       tray-volume-0.png
+sndvolsso:121       tray-volume-1.png
+sndvolsso:122       tray-volume-2.png
+sndvolsso:123       tray-volume-3.png
+sndvolsso:124       tray-volume-4.png
+actioncenter:1      tray-action-center.png
+actioncenter:3      tray-action-center-alert.png
+actioncentercpl:1   cp-action-center.png
+firewallcontrolpanel:1 cp-windows-firewall.png
+wucltux:1           cp-windows-update.png
+powercpl:1          cp-power-options.png
+sdcpl:1             cp-backup-restore.png
+fveui:1             cp-bitlocker.png
+usercpl:1           cp-user-accounts.png
+wpccpl:1            cp-parental-controls.png
+vault:1             cp-credential-manager.png
+netcenter:1         cp-network-sharing-center.png
+hgcpl:47000         cp-homegroup.png
+inetcpl:4487        cp-internet-options.png
+themecpl:1          cp-personalization.png
+display:1           cp-display.png
+sidebar:100         cp-desktop-gadgets.png
+fontext:410         cp-fonts.png
+devicecenter:1      cp-devices-printers.png
+mmsys:100           cp-sound.png
+main:100            cp-mouse.png
+main:200            cp-keyboard.png
+timedate:50         cp-date-time.png
+intl:200            cp-region-language.png
+appwiz:1500         cp-programs-features.png
+accessibilitycpl:1  cp-ease-of-access-center.png
+speechuxcpl:1       cp-speech-recognition.png
+srchadmin:201       cp-indexing-options.png
+colorcpl:5          cp-color-management.png
+diagcpl:1           cp-troubleshooting.png
+synccenter:1000     cp-sync-center.png
+# Not mappable by id here: cmd.exe's icon is a named group (IDI_APPICON; use "cmd.ico app-com.apple.Terminal.png"
+# for a named export), the battery and IE's Add to Favorites have no icon resource, and StikyNot.exe,
+# mblctr.exe and SensorsCpl.dll are not on the user's image 1.

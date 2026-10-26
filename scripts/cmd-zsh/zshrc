@@ -1,0 +1,9 @@
+# Win7Mac Command Prompt: installed as .zshrc in the cmd-zsh ZDOTDIR. Runs the user's own .zshrc, then sets the
+# Command Prompt style prompt (C:\Users\me>). No banner.
+# Started from the Terminal profile: Terminal's own "Last login" line and its echo of the start command go;
+# whatever the user's .zshrc prints below stays. Never in a nested shell (ZDOTDIR is the user's again by then).
+[[ -o interactive && -t 1 && -n $TERM_PROGRAM ]] && printf '\e[H\e[2J\e[3J'
+w7_cmd_fix_history
+w7_cmd_enter .zshrc && source "$REPLY"; w7_cmd_leave
+w7_cmd_prompt_setup
+[[ -o login ]] || w7_cmd_finish

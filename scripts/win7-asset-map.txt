@@ -1,0 +1,228 @@
+# Source map for scripts/import-win7-assets.sh.
+# Format: <asset> <path-in-image-1> [TYPE/id]
+#         CONTACT <path-in-image-1>
+#         wallpapers/<Name> DIR <folder pattern>
+#         gadgets/<Name> DIR <folder pattern>
+#   <asset>          path under Assets/: icons/, cursors/, sounds/ or fonts/ + a plain name ending in .png, .wav or
+#                    .ttf ([A-Za-z0-9][A-Za-z0-9._-]*), or wallpaper.jpg or start-orb; any other name is skipped
+#                    ("unsafe asset name"). "start-orb" is special: it writes start-orb.png, start-orb-hover.png
+#                    and start-orb-pressed.png from a 3-frame vertical strip.
+#   <path-in-image>  path inside Windows 7 (image 1 of install.wim, or the tree root). May contain spaces. Letter
+#                    case matters (Windows/System32/Display.dll).
+#   TYPE/id          the PE resource inside that file: ICON/<group>, CURSOR/<group>, WAVE/<id>, BITMAP/<id>. Every
+#                    icons/*.png or cursors/*.png line that names a .dll/.exe/.cpl needs one. <group> is the icon
+#                    group's number, or its resource name when 7-Zip shows a name (ICON/IDI_APPICON: letters,
+#                    digits and '_', matched exactly). ICON/? means "not chosen yet": the line is skipped and the
+#                    file still gets a contact sheet to choose from. ICON/- means "this media has no such icon"
+#                    (no icon resource, or the file is not on image 1): the line is skipped for good and the
+#                    drawn icon stays.
+#   CONTACT          make a contact sheet of that file even if no line takes an icon from it.
+#   DIR              copy whole folders: every folder the pattern matches, in EVERY image of install.wim (merged),
+#                    becomes Assets/wallpapers/<what the pattern's single '*' matched>/ with that folder's *.jpg,
+#                    or, for gadgets/<Name>, Assets/gadgets/<what '*' matched>/ with the folder's *.png, *.jpg and
+#                    *.gif at its top level, in images/ and in images/<folder>/ (same relative paths; no html, js,
+#                    css or xml). Folder and file names must be plain; symbolic links are never followed.
+# '#' at the start of a line or after a space or tab starts a comment. Trailing tags: K = an id already used
+# before 2026-10-17; "chosen 2026-10-17" = read off labelled contact sheets of the user's own media.
+# Contact sheets: Assets/_contact/<dll>-<group>.png (one per icon group, 48 px) and Assets/_contact/<dll>.png (all
+# of a file's groups, labelled with their ids) for every file an ICON or CONTACT line names. If an icon looks
+# wrong, find the right group there and edit the id on the matching line below. No code changes needed.
+
+wallpaper.jpg           Windows/Web/Wallpaper/Windows/img0.jpg
+# Desktop Background / Personalization themes: one folder per theme (Windows, Landscapes, Architecture, ... as
+# the media has them), and the regional sets (MCT-US -> wallpapers/US).
+wallpapers/<Theme>      DIR Windows/Web/Wallpaper/*
+wallpapers/<CC>         DIR Windows/Globalization/MCT/MCT-*/Wallpaper
+# Desktop gadgets' artwork (Clock, Calendar, CPU, SlideShow): the shell draws them with it (README "Gadgets").
+gadgets/<Name>          DIR Program Files/Windows Sidebar/Gadgets/*.Gadget
+sounds/startup.wav      Windows/System32/imageres.dll WAVE/5080
+sounds/alert.wav        Windows/Media/Windows Ding.wav
+sounds/navigation.wav   Windows/Media/Windows Navigation Start.wav
+sounds/recycle.wav      Windows/Media/Windows Recycle.wav
+sounds/hardware-insert.wav Windows/Media/Windows Hardware Insert.wav
+sounds/hardware-remove.wav Windows/Media/Windows Hardware Remove.wav
+sounds/logoff.wav       Windows/Media/Windows Logoff Sound.wav
+sounds/shutdown.wav     Windows/Media/Windows Shutdown.wav
+cursors/arrow.png       Windows/Cursors/aero_arrow.cur
+cursors/hand.png        Windows/Cursors/aero_link.cur
+cursors/ibeam.png       Windows/System32/user32.dll CURSOR/101    # chosen 2026-10-17 off the cursor sheet (group 101: the I-beam; 100 arrow, 102 wait, 114 hand)
+fonts/segoeui.ttf       Windows/Fonts/segoeui.ttf
+fonts/segoeuib.ttf      Windows/Fonts/segoeuib.ttf
+fonts/lucon.ttf         Windows/Fonts/lucon.ttf
+start-orb               Windows/explorer.exe BITMAP/6801
+icons/documents.png     Windows/System32/imageres.dll ICON/112
+icons/pictures.png      Windows/System32/imageres.dll ICON/113
+icons/music.png         Windows/System32/imageres.dll ICON/108
+icons/computer.png      Windows/System32/imageres.dll ICON/109
+icons/control-panel.png Windows/System32/imageres.dll ICON/27
+icons/devices.png       Windows/System32/DeviceCenter.dll ICON/1
+icons/user.png          ProgramData/Microsoft/User Account Pictures/Default Pictures/usertile11.bmp
+icons/recycle-bin-empty.png Windows/System32/imageres.dll ICON/55
+icons/recycle-bin-full.png  Windows/System32/imageres.dll ICON/54
+
+# Files and folders (imageres.dll)
+icons/file.png                  Windows/System32/imageres.dll ICON/2      # K
+icons/folder.png                Windows/System32/imageres.dll ICON/3      # K
+icons/games.png                 Windows/System32/imageres.dll ICON/14     # K
+icons/file-app.png              Windows/System32/imageres.dll ICON/15     # K
+icons/file-text.png             Windows/System32/imageres.dll ICON/19     # K
+icons/file-image.png            Windows/System32/imageres.dll ICON/21     # K
+icons/file-audio.png            Windows/System32/imageres.dll ICON/22     # K
+icons/file-video.png            Windows/System32/imageres.dll ICON/23     # K
+icons/network.png               Windows/System32/imageres.dll ICON/25     # K
+icons/drive.png                 Windows/System32/imageres.dll ICON/32     # K
+icons/drive-removable.png       Windows/System32/imageres.dll ICON/35     # K
+icons/drive-system.png          Windows/System32/imageres.dll ICON/36     # K
+icons/drive-optical.png         Windows/System32/imageres.dll ICON/37     # K
+icons/folder-music.png          Windows/System32/imageres.dll ICON/108    # K
+icons/folder-documents.png      Windows/System32/imageres.dll ICON/112    # K (the same picture as icons/documents.png)
+icons/folder-pictures.png       Windows/System32/imageres.dll ICON/113    # K
+icons/folder-user.png           Windows/System32/imageres.dll ICON/123    # chosen 2026-10-17
+icons/folder-desktop.png        Windows/System32/imageres.dll ICON/183    # chosen 2026-10-17
+icons/folder-downloads.png      Windows/System32/imageres.dll ICON/184    # chosen 2026-10-17
+icons/folder-videos.png         Windows/System32/imageres.dll ICON/189    # chosen 2026-10-17
+icons/favorites.png             Windows/System32/imageres.dll ICON/1024   # chosen 2026-10-17 (the gold star)
+icons/help.png                  Windows/System32/imageres.dll ICON/99     # chosen 2026-10-17
+icons/run.png                   Windows/System32/shell32.dll ICON/25      # chosen 2026-10-17
+icons/recent-places.png         Windows/System32/shell32.dll ICON/16741   # chosen 2026-10-17 (Finder's sidebar Recents)
+icons/shared.png                Windows/System32/imageres.dll ICON/1010   # chosen 2026-10-17 (Finder's sidebar Shared)
+
+# Message boxes (user32.dll)
+icons/msgbox-warning.png        Windows/System32/user32.dll ICON/101      # chosen 2026-10-17
+icons/msgbox-question.png       Windows/System32/user32.dll ICON/102      # chosen 2026-10-17
+icons/msgbox-error.png          Windows/System32/user32.dll ICON/103      # chosen 2026-10-17
+icons/msgbox-info.png           Windows/System32/user32.dll ICON/104      # chosen 2026-10-17
+
+# Programs (the Mac app -> its Windows 7 counterpart)
+icons/app-com.apple.finder.png            Windows/System32/imageres.dll ICON/1023                           # chosen 2026-10-17 (Libraries: Windows 7's taskbar Explorer button)
+icons/app-com.apple.Safari.png            Program Files/Internet Explorer/iexplore.exe ICON/32528           # chosen 2026-10-17
+icons/app-com.apple.Music.png             Program Files/Windows Media Player/wmplayer.exe ICON/120          # chosen 2026-10-17
+icons/app-com.apple.TextEdit.png          Windows/System32/notepad.exe ICON/2                               # chosen 2026-10-17
+icons/app-com.apple.Terminal.png          Windows/System32/cmd.exe ICON/IDI_APPICON                         # chosen 2026-10-17 (7-Zip names this group)
+icons/app-com.apple.ActivityMonitor.png   Windows/System32/taskmgr.exe ICON/107                             # chosen 2026-10-17
+icons/app-com.apple.systempreferences.png Windows/System32/imageres.dll ICON/27                             # K
+icons/app-com.apple.calculator.png        Windows/System32/calc.exe ICON/234                                # chosen 2026-10-17
+icons/app-com.apple.Notes.png             Windows/System32/StikyNot.exe ICON/-                              # not in image 1
+icons/app-com.apple.Preview.png           Program Files/Windows Photo Viewer/PhotoViewer.dll ICON/3005      # chosen 2026-10-17
+
+# Internet Explorer command bar (ieframe.dll)
+icons/ie-add-favorite.png       Windows/System32/ieframe.dll ICON/-       # no icon resource (IE8 keeps it in toolbar bitmap strips); drawn
+icons/ie-home.png               Windows/System32/ieframe.dll ICON/100     # chosen 2026-10-17
+icons/ie-print.png              Windows/System32/ieframe.dll ICON/116     # chosen 2026-10-17
+icons/ie-page.png               Windows/System32/ieframe.dll ICON/102     # chosen 2026-10-17 (the blank page)
+icons/ie-help.png               Windows/System32/imageres.dll ICON/99     # chosen 2026-10-17
+
+# Notification area: network (pnidui.dll)
+icons/tray-wifi-0.png           Windows/System32/pnidui.dll ICON/3021     # chosen 2026-10-17
+icons/tray-wifi-1.png           Windows/System32/pnidui.dll ICON/3023     # chosen 2026-10-17
+icons/tray-wifi-2.png           Windows/System32/pnidui.dll ICON/3024     # chosen 2026-10-17
+icons/tray-wifi-3.png           Windows/System32/pnidui.dll ICON/3025     # chosen 2026-10-17
+icons/tray-wifi-4.png           Windows/System32/pnidui.dll ICON/3026     # chosen 2026-10-17
+icons/tray-wired.png            Windows/System32/pnidui.dll ICON/3044     # chosen 2026-10-17
+icons/tray-disconnected.png     Windows/System32/pnidui.dll ICON/3020     # chosen 2026-10-17
+icons/tray-no-network.png       Windows/System32/pnidui.dll ICON/3035     # chosen 2026-10-17
+# Volume (SndVolSSO.dll)
+icons/tray-volume-0.png         Windows/System32/SndVolSSO.dll ICON/120   # chosen 2026-10-17 (muted)
+icons/tray-volume-1.png         Windows/System32/SndVolSSO.dll ICON/121   # chosen 2026-10-17
+icons/tray-volume-2.png         Windows/System32/SndVolSSO.dll ICON/122   # chosen 2026-10-17
+icons/tray-volume-3.png         Windows/System32/SndVolSSO.dll ICON/123   # chosen 2026-10-17
+icons/tray-volume-4.png         Windows/System32/SndVolSSO.dll ICON/124   # chosen 2026-10-17
+# Battery: batmeter.dll holds only runtime-composited BITMAP strips, no icons
+icons/tray-battery-0.png            Windows/System32/batmeter.dll ICON/-  # no icon resource; drawn
+icons/tray-battery-1.png            Windows/System32/batmeter.dll ICON/-  # no icon resource; drawn
+icons/tray-battery-2.png            Windows/System32/batmeter.dll ICON/-  # no icon resource; drawn
+icons/tray-battery-3.png            Windows/System32/batmeter.dll ICON/-  # no icon resource; drawn
+icons/tray-battery-4.png            Windows/System32/batmeter.dll ICON/-  # no icon resource; drawn
+icons/tray-battery-0-charging.png   Windows/System32/batmeter.dll ICON/-  # no icon resource; drawn
+icons/tray-battery-1-charging.png   Windows/System32/batmeter.dll ICON/-  # no icon resource; drawn
+icons/tray-battery-2-charging.png   Windows/System32/batmeter.dll ICON/-  # no icon resource; drawn
+icons/tray-battery-3-charging.png   Windows/System32/batmeter.dll ICON/-  # no icon resource; drawn
+icons/tray-battery-4-charging.png   Windows/System32/batmeter.dll ICON/-  # no icon resource; drawn
+# Action Center (ActionCenter.dll)
+icons/tray-action-center.png        Windows/System32/ActionCenter.dll ICON/1   # chosen 2026-10-17
+icons/tray-action-center-alert.png  Windows/System32/ActionCenter.dll ICON/3   # chosen 2026-10-17
+
+# Control Panel categories. cp-user-accounts is one name for the category and the item: its line is with the
+# items (usercpl.dll); the category picture (imageres 1010) has no cp- name of its own (icons/shared.png uses it).
+icons/cp-system-security.png    Windows/System32/imageres.dll ICON/195    # chosen 2026-10-17
+icons/cp-network-internet.png   Windows/System32/imageres.dll ICON/120    # chosen 2026-10-17
+icons/cp-appearance.png         Windows/System32/imageres.dll ICON/197    # chosen 2026-10-17
+icons/cp-hardware-sound.png     Windows/System32/imageres.dll ICON/196    # chosen 2026-10-17
+icons/cp-clock-region.png       Windows/System32/imageres.dll ICON/144    # chosen 2026-10-17
+icons/cp-programs.png           Windows/System32/imageres.dll ICON/1021   # chosen 2026-10-17
+icons/cp-ease-of-access.png     Windows/System32/accessibilitycpl.dll ICON/1   # chosen 2026-10-17
+
+# Control Panel items
+icons/cp-action-center.png          Windows/System32/ActionCenterCPL.dll ICON/1        # chosen 2026-10-17
+icons/cp-windows-firewall.png       Windows/System32/FirewallControlPanel.dll ICON/1   # chosen 2026-10-17
+icons/cp-system.png                 Windows/System32/imageres.dll ICON/1008            # chosen 2026-10-17
+icons/cp-windows-update.png         Windows/System32/wucltux.dll ICON/1                # chosen 2026-10-17
+icons/cp-power-options.png          Windows/System32/powercpl.dll ICON/1               # chosen 2026-10-17
+icons/cp-backup-restore.png         Windows/System32/sdcpl.dll ICON/1                  # chosen 2026-10-17
+icons/cp-bitlocker.png              Windows/System32/fveui.dll ICON/1                  # chosen 2026-10-17
+icons/cp-administrative-tools.png   Windows/System32/imageres.dll ICON/114             # K
+icons/cp-user-accounts.png          Windows/System32/usercpl.dll ICON/1                # chosen 2026-10-17
+icons/cp-parental-controls.png      Windows/System32/wpccpl.dll ICON/1                 # chosen 2026-10-17
+icons/cp-credential-manager.png     Windows/System32/Vault.dll ICON/1                  # chosen 2026-10-17
+icons/cp-network-sharing-center.png Windows/System32/netcenter.dll ICON/1              # chosen 2026-10-17
+icons/cp-homegroup.png              Windows/System32/hgcpl.dll ICON/47000              # chosen 2026-10-17
+icons/cp-internet-options.png       Windows/System32/inetcpl.cpl ICON/4487             # chosen 2026-10-17
+icons/cp-personalization.png        Windows/System32/themecpl.dll ICON/1               # chosen 2026-10-17
+icons/cp-display.png                Windows/System32/Display.dll ICON/1                # chosen 2026-10-17
+icons/cp-desktop-gadgets.png        Program Files/Windows Sidebar/sidebar.exe ICON/100 # chosen 2026-10-17
+icons/cp-taskbar-start-menu.png     Windows/System32/shell32.dll ICON/40               # chosen 2026-10-17 (best guess)
+icons/cp-notification-area-icons.png Windows/System32/shell32.dll ICON/43              # chosen 2026-10-17 (best guess)
+icons/cp-folder-options.png         Windows/System32/shell32.dll ICON/210              # chosen 2026-10-17 (best guess)
+icons/cp-fonts.png                  Windows/System32/fontext.dll ICON/410              # chosen 2026-10-17
+icons/cp-devices-printers.png       Windows/System32/DeviceCenter.dll ICON/1           # K
+icons/cp-autoplay.png               Windows/System32/imageres.dll ICON/56              # chosen 2026-10-17
+icons/cp-sound.png                  Windows/System32/mmsys.cpl ICON/100                # chosen 2026-10-17
+icons/cp-mobility-center.png        Windows/System32/mblctr.exe ICON/-                 # not in image 1
+icons/cp-mouse.png                  Windows/System32/main.cpl ICON/100                 # chosen 2026-10-17
+icons/cp-keyboard.png               Windows/System32/main.cpl ICON/200                 # chosen 2026-10-17
+icons/cp-date-time.png              Windows/System32/timedate.cpl ICON/50              # chosen 2026-10-17
+icons/cp-region-language.png        Windows/System32/intl.cpl ICON/200                 # chosen 2026-10-17
+icons/cp-programs-features.png      Windows/System32/appwiz.cpl ICON/1500              # chosen 2026-10-17
+icons/cp-default-programs.png       Windows/System32/imageres.dll ICON/24              # K
+icons/cp-calculator.png             Windows/System32/calc.exe ICON/234                 # as app-com.apple.calculator
+icons/cp-ease-of-access-center.png  Windows/System32/accessibilitycpl.dll ICON/1       # chosen 2026-10-17
+icons/cp-speech-recognition.png     Windows/System32/Speech/SpeechUX/speechuxcpl.dll ICON/1   # chosen 2026-10-17
+icons/cp-getting-started.png        Windows/System32/imageres.dll ICON/116             # chosen 2026-10-17
+icons/cp-indexing-options.png       Windows/System32/srchadmin.dll ICON/201            # chosen 2026-10-17
+icons/cp-color-management.png       Windows/System32/colorcpl.exe ICON/5               # chosen 2026-10-17
+icons/cp-performance.png            Windows/System32/imageres.dll ICON/150             # chosen 2026-10-17
+icons/cp-troubleshooting.png        Windows/System32/DiagCpl.dll ICON/1                # chosen 2026-10-17
+icons/cp-recovery.png               Windows/System32/imageres.dll ICON/1022            # chosen 2026-10-17
+icons/cp-location-sensors.png       Windows/System32/SensorsCpl.dll ICON/?             # C (still to choose)
+icons/cp-sync-center.png            Windows/System32/SyncCenter.dll ICON/1000          # chosen 2026-10-17
+
+# Device Manager and Devices and Printers: one icon per device category. Ids chosen by the
+# controller off the contact sheets; Bluetooth and USB are still to choose (bthprops.cpl, setupapi.dll hold
+# Windows 7's device-class icons).
+icons/dev-processor.png         Windows/System32/imageres.dll ICON/34      # chosen 2026-10-17
+icons/dev-disk.png              Windows/System32/imageres.dll ICON/32      # chosen 2026-10-17 (as drive.png)
+icons/dev-monitor.png           Windows/System32/imageres.dll ICON/103     # chosen 2026-10-17
+icons/dev-keyboard.png          Windows/System32/imageres.dll ICON/182     # chosen 2026-10-17
+icons/dev-mouse.png             Windows/System32/main.cpl ICON/100         # chosen 2026-10-17 (as cp-mouse.png)
+icons/dev-camera.png            Windows/System32/imageres.dll ICON/57      # chosen 2026-10-17
+icons/dev-printer.png           Windows/System32/imageres.dll ICON/26      # chosen 2026-10-17
+icons/dev-network.png           Windows/System32/imageres.dll ICON/25      # chosen 2026-10-17 (as network.png)
+icons/dev-battery.png           Windows/System32/powercpl.dll ICON/1       # chosen 2026-10-17 (as cp-power-options.png)
+icons/dev-audio.png             Windows/System32/mmsys.cpl ICON/100        # chosen 2026-10-17 (as cp-sound.png)
+icons/dev-display.png           Windows/System32/imageres.dll ICON/110     # chosen 2026-10-17
+icons/dev-storage.png           Windows/System32/imageres.dll ICON/33      # chosen 2026-10-17
+icons/dev-computer.png          Windows/System32/imageres.dll ICON/109     # chosen 2026-10-17 (as computer.png)
+icons/dev-bluetooth.png         Windows/System32/bthprops.cpl ICON/151     # chosen 2026-10-18
+icons/dev-usb.png               Windows/System32/setupapi.dll ICON/20      # chosen 2026-10-18
+
+# Contact sheets of the files most icons come from (every file an ICON line names gets one anyway).
+CONTACT Windows/System32/imageres.dll
+CONTACT Windows/System32/shell32.dll
+CONTACT Windows/System32/user32.dll
+CONTACT Windows/System32/ieframe.dll
+CONTACT Windows/System32/pnidui.dll
+CONTACT Windows/System32/SndVolSSO.dll
+CONTACT Windows/System32/ActionCenter.dll
+CONTACT Windows/System32/ActionCenterCPL.dll
+CONTACT Windows/explorer.exe
+CONTACT Program Files/Internet Explorer/iexplore.exe

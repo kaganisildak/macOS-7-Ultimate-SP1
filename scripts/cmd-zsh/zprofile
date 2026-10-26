@@ -1,0 +1,2 @@
+# Win7Mac Command Prompt: installed as .zprofile in the cmd-zsh ZDOTDIR. Runs the user's own .zprofile.
+w7_cmd_enter .zprofile && source "$REPLY"; w7_cmd_leave

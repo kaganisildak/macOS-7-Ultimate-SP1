@@ -1,0 +1,98 @@
+{
+  "SPAudioDataType": [
+    {
+      "_name": "coreaudio_device",
+      "_items": [
+        { "_name": "Example Speakers", "coreaudio_device_manufacturer": "Example Audio Co.", "coreaudio_device_output": 2,
+          "coreaudio_device_transport": "coreaudio_device_type_builtin" },
+        { "_name": "Example Microphone", "coreaudio_device_manufacturer": "Example Audio Co.", "coreaudio_device_input": 1,
+          "coreaudio_device_transport": "coreaudio_device_type_builtin" },
+        { "_name": "Sample USB Headset", "coreaudio_device_manufacturer": "Sample Devices",
+          "coreaudio_device_transport": "coreaudio_device_type_usb" }
+      ]
+    }
+  ],
+  "SPBluetoothDataType": [
+    {
+      "controller_properties": { "controller_address": "00:00:5E:00:53:0A", "controller_chipset": "EX_1234",
+                                 "controller_state": "attrib_on", "controller_vendorID": "0x0000 (Example)" },
+      "device_connected": [
+        { "Sample Keyboard": { "device_address": "00:00:5E:00:53:0B", "device_minorType": "Keyboard" } },
+        { "Sample Mouse": { "device_address": "00:00:5E:00:53:0C", "device_minorType": "Mouse" } },
+        { "Sample Headphones": { "device_address": "00:00:5E:00:53:0D", "device_minorType": "Headphones" } }
+      ],
+      "device_not_connected": [
+        { "Old Speaker": { "device_address": "00:00:5E:00:53:0E", "device_minorType": "Speaker" } }
+      ]
+    }
+  ],
+  "SPCameraDataType": [
+    { "_name": "Example HD Camera", "spcamera_model-id": "FakeCam 1,1", "spcamera_unique-id": "0xFAKEUNIQUE0001" }
+  ],
+  "SPDisplaysDataType": [
+    {
+      "_name": "kHW_ExampleGPUItem", "sppci_model": "Example GPU 10-Core", "spdisplays_vendor": "sppci_vendor_Example",
+      "spdisplays_ndrvs": [
+        { "_name": "Built-in Example Display", "spdisplays_connection_type": "spdisplays_internal",
+          "_spdisplays_display-serial-number": "FAKE-DISPLAY-SN-1" },
+        { "_name": "Sample 27 Monitor", "_spdisplays_display-serial-number": "FAKE-DISPLAY-SN-2" }
+      ]
+    }
+  ],
+  "SPNVMeDataType": [
+    { "_name": "Generic SSD Controller",
+      "_items": [ { "_name": "EXAMPLE SSD 512", "device_model": "EXAMPLE SSD 512", "device_serial": "FAKE-SSD-SN-0001" } ] }
+  ],
+  "SPSerialATADataType": [
+    { "_name": "Example SATA Controller",
+      "_items": [ { "_name": "Sample HDD 1TB", "device_model": "Sample HDD 1TB", "device_serial": "FAKE-HDD-SN-0001" } ] }
+  ],
+  "SPStorageDataType": [
+    { "_name": "Example HD", "mount_point": "/", "bsd_name": "disk9s1", "volume_uuid": "00000000-0000-0000-0000-000000000001",
+      "physical_drive": { "device_name": "EXAMPLE SSD 512", "is_internal_disk": "yes", "medium_type": "ssd" } },
+    { "_name": "Example HD - Data", "mount_point": "/System/Volumes/Data",
+      "physical_drive": { "device_name": "EXAMPLE SSD 512", "is_internal_disk": "yes" } },
+    { "_name": "Sample Stick", "mount_point": "/Volumes/Sample Stick",
+      "physical_drive": { "media_name": "Sample Flash Drive", "is_internal_disk": "no", "protocol": "USB" } }
+  ],
+  "SPUSBDataType": [
+    {
+      "_name": "USB31Bus", "host_controller": "ExampleUSBXHCI",
+      "_items": [
+        { "_name": "USB2.0 Hub", "manufacturer": "Example Hubs", "serial_num": "FAKE-HUB-SN", "location_id": "0x01100000 / 1",
+          "_items": [
+            { "_name": "Sample USB Keyboard", "manufacturer": "Sample Devices", "serial_num": "FAKE-KB-SN" },
+            { "_name": "Sample Optical Mouse", "manufacturer": "Sample Devices" }
+          ] }
+      ]
+    }
+  ],
+  "SPUSBHostDataType": [
+    { "_name": "USB3 Bus 2", "Driver": "ExampleUSBXHCIHost",
+      "_items": [ { "_name": "Ignored Host Gadget", "USBDeviceKeyVendorName": "Sample Devices" } ] }
+  ],
+  "SPNetworkDataType": [
+    { "_name": "Wi-Fi", "hardware": "AirPort", "interface": "en0", "type": "AirPort",
+      "Ethernet": { "MAC Address": "00:00:5e:00:53:01" } },
+    { "_name": "Ethernet", "hardware": "Ethernet", "interface": "en1", "type": "Ethernet",
+      "Ethernet": { "MAC Address": "00:00:5e:00:53:02" } },
+    { "_name": "Thunderbolt Bridge", "hardware": "Ethernet", "interface": "bridge0", "type": "Ethernet" }
+  ],
+  "SPHardwareDataType": [
+    { "_name": "hardware_overview", "machine_name": "Example Mac", "machine_model": "Example1,1", "chip_type": "Example Chip X1",
+      "number_processors": "proc 8:4:4", "serial_number": "FAKE-SERIAL-0001",
+      "platform_UUID": "00000000-0000-0000-0000-000000000002" }
+  ],
+  "SPPowerDataType": [
+    { "_name": "spbattery_information",
+      "sppower_battery_model_info": { "sppower_battery_device_name": "bq-example", "sppower_battery_manufacturer": "Example Cells",
+                                      "sppower_battery_serial_number": "FAKE-BATT-SN" } },
+    { "_name": "sppower_ac_charger_information", "sppower_battery_charger_connected": "TRUE" }
+  ],
+  "SPPrintersDataType": [
+    { "_name": "Example LaserJet", "uri": "ipp://printer.example/ipp/print", "status": "idle", "default": "yes",
+      "ppd": "/private/etc/cups/ppd/Example_LaserJet.ppd" },
+    { "_name": "Sample Inkjet", "status": "idle" }
+  ],
+  "SPUnknownDataType": [ { "_name": "Should Be Ignored" } ]
+}

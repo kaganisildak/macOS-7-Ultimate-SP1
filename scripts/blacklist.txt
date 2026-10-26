@@ -1,0 +1,17 @@
+loginwindow
+Dock
+WindowManager
+ControlCenter
+SystemUIServer
+NotificationCenter
+Spotlight
+SecurityAgent
+Win7Shell
+osascript
+SecurityPrivacyExtension
+HomePrivacySettingsExtension
+SecurityImprovementsExtension
+Touch ID & Password
+UsersGroups
+LockScreen
+PasswordsSettingsExtension

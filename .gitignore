@@ -1,0 +1,6 @@
+.build/
+build/
+Assets/*
+!Assets/README.md
+!Assets/*/.gitkeep
+.DS_Store

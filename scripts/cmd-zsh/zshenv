@@ -1,0 +1,4 @@
+# Win7Mac Command Prompt: installed as .zshenv in the cmd-zsh ZDOTDIR. Runs the user's own ~/.zshenv.
+source "$ZDOTDIR/win7-cmd.zsh"
+w7_cmd_enter .zshenv && source "$REPLY"; w7_cmd_leave
+[[ -o interactive || -o login ]] || w7_cmd_finish

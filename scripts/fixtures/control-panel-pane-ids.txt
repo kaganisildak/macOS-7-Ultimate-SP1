@@ -1,0 +1,55 @@
+# System Settings panes on macOS 27.0.1 (26A434), from scripts/control-panel-pane-ids.sh:
+# Settings extensions (com.apple.Settings.extension.ui) that allow the x-apple.systempreferences: URL scheme.
+# Format: <bundle id><TAB><appex name in /System/Library/ExtensionKit/Extensions>. The Control Panel may only
+# open ids listed here (Win7CoreTests); scripts/test_control_panel_ids.sh fails when one is missing on this Mac.
+com.apple.Accessibility-Settings.extension	AccessibilitySettingsExtension.appex
+com.apple.AirDrop-Handoff-Settings.extension	AirDropHandoffExtension.appex
+com.apple.Appearance-Settings.extension	Appearance.appex
+com.apple.Battery-Settings.extension	PowerPreferences.appex
+com.apple.BluetoothSettings	Bluetooth.appex
+com.apple.CD-DVD-Settings.extension	CDs & DVDs Settings Extension.appex
+com.apple.ClassKit-Settings.extension	ClassKitSettings.appex
+com.apple.Classroom-Settings.extension	ClassroomSettings.appex
+com.apple.ControlCenter-Settings.extension	ControlCenterSettings.appex
+com.apple.Coverage-Settings.extension	CoverageSettings.appex
+com.apple.Date-Time-Settings.extension	DateAndTime Extension.appex
+com.apple.Desktop-Settings.extension	DesktopSettings.appex
+com.apple.Displays-Settings.extension	DisplaysExt.appex
+com.apple.Family-Settings.extension	FamilySettings.appex
+com.apple.Focus-Settings.extension	FocusSettingsExtension.appex
+com.apple.FollowUpSettings.FollowUpSettingsExtension	FollowUpSettingsExtension.appex
+com.apple.Game-Center-Settings.extension	GameCenterMacOSSettingsExtension.appex
+com.apple.Game-Controller-Settings.extension	GameControllerMacSettings.appex
+com.apple.HeadphoneSettings	HeadphoneSettingsExtension.appex
+com.apple.Internet-Accounts-Settings.extension	InternetAccountsSettingsExtension.appex
+com.apple.Keyboard-Settings.extension	KeyboardSettings.appex
+com.apple.Localization-Settings.extension	Localization.appex
+com.apple.Lock-Screen-Settings.extension	LockScreen.appex
+com.apple.LoginItems-Settings.extension	LoginItems.appex
+com.apple.Mouse-Settings.extension	MouseExtension.appex
+com.apple.Network-Settings.extension	Network.appex
+com.apple.NetworkExtensionSettingsUI.NESettingsUIExtension	VPN.appex
+com.apple.Notifications-Settings.extension	NotificationsSettings.appex
+com.apple.Print-Scan-Settings.extension	PrinterScannerSettings.appex
+com.apple.Profiles-Settings.extension	ProfilesSettingsExt.appex
+com.apple.Screen-Time-Settings.extension	ScreenTimePreferencesExtension.appex
+com.apple.SecurityImprovements-Settings.extension	SecurityImprovementsExtension.appex
+com.apple.Sharing-Settings.extension	Sharing.appex
+com.apple.Siri-Settings.extension	SiriPreferenceExtension.appex
+com.apple.Software-Update-Settings.extension	SoftwareUpdateSettingsExtension.appex
+com.apple.Sound-Settings.extension	Sound.appex
+com.apple.Spotlight-Settings.extension	SpotlightPreferenceExtension.appex
+com.apple.Startup-Disk-Settings.extension	StartupDisk.appex
+com.apple.SystemProfiler.AboutExtension	AboutExtension.appex
+com.apple.Time-Machine-Settings.extension	TimeMachineSettings.appex
+com.apple.Touch-ID-Settings.extension	Touch ID & Password.appex
+com.apple.Trackpad-Settings.extension	TrackpadExtension.appex
+com.apple.Transfer-Reset-Settings.extension	TransferResetExtension.appex
+com.apple.Users-Groups-Settings.extension	UsersGroups.appex
+com.apple.WalletSettingsExtension	WalletSettingsExtension.appex
+com.apple.Wallpaper-Settings.extension	Wallpaper.appex
+com.apple.settings.PrivacySecurity.extension	SecurityPrivacyExtension.appex
+com.apple.settings.Storage	Storage.appex
+com.apple.systempreferences.AppleIDSettings	AppleIDSettings.appex
+com.apple.systempreferences.GeneralSettings	GeneralSettings.appex
+com.apple.wifi-settings-extension	Wi-Fi.appex

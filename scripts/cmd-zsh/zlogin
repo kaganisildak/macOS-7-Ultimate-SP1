@@ -1,0 +1,3 @@
+# Win7Mac Command Prompt: installed as .zlogin in the cmd-zsh ZDOTDIR. Runs the user's own .zlogin.
+w7_cmd_enter .zlogin && source "$REPLY"; w7_cmd_leave
+w7_cmd_finish
